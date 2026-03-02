@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧬 Generador de Formas SVG y Blobs | juanfrank.net</title>
+    <meta name="description" content="Crea formas orgánicas y blobs SVG personalizados para tus diseños web. Generador aleatorio de formas vectoriales con código listo para exportar.">
+    <meta name="keywords" content="generador svg, blobs svg, formas organicas, svg shapes generator, diseño web, recursos frontend, vectores aleatorios, fondo decorativo">
+    <meta name="author" content="juanfrank.net">
+    <meta name="robots" content="index, follow">
+
+    <meta name="theme-color" content="#6366f1">
+    <link rel="canonical" href="https://juanfrank.net/generador-de-formas-svg.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://juanfrank.net/generador-de-formas-svg.html">
+    <meta property="og:title" content="🧬 Generador de Formas SVG y Blobs | juanfrank.net">
+    <meta property="og:description" content="Genera formas vectoriales únicas y aleatorias para tus proyectos. Personaliza, previsualiza y descarga tu SVG al instante.">
+    <meta property="og:image" content="https://juanfrank.net/assets/og-image-lab-web.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://juanfrank.net/generador-de-formas-svg.html">
+    <meta property="twitter:title" content="🧬 Generador de Formas SVG y Blobs | juanfrank.net">
+    <meta property="twitter:description" content="Herramienta creativa para desarrolladores: crea formas SVG fluidas y orgánicas de forma gratuita.">
+    <meta property="twitter:image" content="https://juanfrank.net/assets/og-image-lab-web.jpg">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config = { darkMode: 'class' }</script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; transition: all 0.3s ease; }
+        input[type=range] { appearance: none; background: transparent; }
+        input[type=range]::-webkit-slider-runnable-track { background: #e2e8f0; height: 6px; border-radius: 10px; }
+        .dark input[type=range]::-webkit-slider-runnable-track { background: #334155; }
+        input[type=range]::-webkit-slider-thumb { appearance: none; height: 18px; width: 18px; background: #6366f1; border-radius: 50%; margin-top: -6px; border: 2px solid white; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); }
+        .blob-shadow { filter: drop-shadow(0 25px 25px rgb(0 0 0 / 0.15)); }
+        #svgOutput { scrollbar-width: thin; scrollbar-color: #4f46e5 #0f172a; }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-6xl mx-auto flex justify-end mb-4">
+        <button onclick="toggleTheme()" class="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 flex items-center gap-2 hover:scale-105 transition-transform active:scale-95">
+            <span id="themeIcon">🌙</span>
+            <span class="text-xs font-bold uppercase tracking-widest hidden sm:inline" id="themeText">Modo Oscuro</span>
+        </button>
+    </div>
+
+    <main class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <div class="lg:col-span-5 space-y-6">
+            <div class="bg-white dark:bg-[#1e293b] rounded-[2.5rem] p-8 shadow-xl border border-slate-100 dark:border-slate-800">
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h1 class="text-2xl font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 uppercase tracking-tighter">Generador SVG</h1>
+                        <p class="text-slate-500 dark:text-slate-400 text-[10px] font-bold uppercase tracking-widest">Formas Orgánicas Pro</p>
+                    </div>
+                    <button onclick="randomize()" class="p-3 bg-slate-900 dark:bg-indigo-600 text-white rounded-2xl hover:scale-110 transition-all active:rotate-12 shadow-lg" title="Generar Aleatorio">🎲</button>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest">Complejidad: <span id="val-edges" class="text-indigo-500">6</span></label>
+                            <input type="range" id="edges" min="3" max="15" value="6" oninput="updateBlob()" class="w-full">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black uppercase text-slate-400 tracking-widest">Deformación: <span id="val-growth" class="text-indigo-500">60</span></label>
+                            <input type="range" id="growth" min="20" max="120" value="60" oninput="updateBlob()" class="w-full">
+                        </div>
+                    </div>
+
+                    <div class="h-px bg-slate-100 dark:bg-slate-800 my-2"></div>
+
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <button onclick="setFillType('solid')" id="btnSolid" class="flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-indigo-500 bg-indigo-500 text-white transition-all">Sólido</button>
+                            <button onclick="setFillType('gradient')" id="btnGrad" class="flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-slate-200 dark:border-slate-700 text-slate-400 transition-all">Gradiente</button>
+                        </div>
+
+                        <div id="solidControls" class="flex items-center gap-4">
+                            <div class="flex-1">
+                                <span class="text-[8px] font-black text-slate-400 uppercase block mb-1">Color de Relleno</span>
+                                <input type="color" id="color1" value="#6366f1" oninput="updateBlob()" class="w-full h-10 rounded-lg cursor-pointer bg-transparent">
+                            </div>
+                        </div>
+
+                        <div id="gradientControls" class="hidden grid grid-cols-2 gap-4">
+                            <div>
+                                <span class="text-[8px] font-black text-slate-400 uppercase block mb-1">Color Inicio</span>
+                                <input type="color" id="gradStart" value="#6366f1" oninput="updateBlob()" class="w-full h-10 rounded-lg cursor-pointer bg-transparent">
+                            </div>
+                            <div>
+                                <span class="text-[8px] font-black text-slate-400 uppercase block mb-1">Color Fin</span>
+                                <input type="color" id="gradEnd" value="#a855f7" oninput="updateBlob()" class="w-full h-10 rounded-lg cursor-pointer bg-transparent">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-[#1e293b] p-6 rounded-[2rem] border border-slate-100 dark:border-slate-800 shadow-lg">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        Código HTML / SVG
+                    </span>
+                    <button onclick="copySVG()" id="copyBtn" class="bg-indigo-600 text-white px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest hover:bg-indigo-700 transition-all active:scale-95 shadow-md">
+                        Copiar HTML
+                    </button>
+                </div>
+                <div class="bg-slate-900 rounded-2xl p-4 overflow-hidden group relative border border-slate-800">
+                    <pre id="svgOutput" class="text-indigo-300 text-[10px] font-mono whitespace-pre-wrap break-all h-32 overflow-y-auto leading-relaxed"></pre>
+                </div>
+                <p class="text-[8px] text-slate-400 mt-3 italic text-center uppercase tracking-widest font-bold">Pega este código directamente en tu proyecto HTML</p>
+            </div>
+        </div>
+
+        <div class="lg:col-span-7 bg-white dark:bg-[#1e293b] rounded-[3rem] shadow-xl border border-slate-100 dark:border-slate-800 flex items-center justify-center relative min-h-[500px]">
+            <div class="absolute inset-0 opacity-20 dark:opacity-10" style="background-image: radial-gradient(#cbd5e1 1px, transparent 1px); background-size: 30px 30px;"></div>
+            
+            <div id="canvas" class="w-full max-w-[450px] p-8 blob-shadow relative z-10 transition-all duration-500">
+                </div>
+
+            <div class="absolute bottom-8 flex gap-3">
+                <button onclick="downloadSVG()" class="bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-all border border-slate-200 dark:border-slate-700">
+                    Descargar .SVG
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer class="max-w-6xl mx-auto mt-16 pb-24 text-center border-t border-slate-200 dark:border-slate-800 pt-8">
+        <div class="mb-8">
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+            <script type='text/javascript'>kofiwidget2.init('¿Me invitas a un café?', '#6366f1', 'H2H71TNB5K');kofiwidget2.draw();</script>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+            <p class="text-slate-500 text-sm font-medium tracking-widest">
+                © 2025 juanfrank.net • <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#117;&#97;&#110;&#102;&#114;&#97;&#110;&#107;&#46;&#110;&#101;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="text-indigo-600 dark:text-indigo-400 hover:underline transition-colors">Contacto</a>
+            </p>
+            <div class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" class="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium no-underline">
+                    <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" class="filter grayscale dark:invert" />
+                    <span>Esta obra está bajo una Licencia CC BY-NC-ND 4.0</span>
+                </a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 max-w-xs leading-tight">
+                Uso gratuito permitido. Prohibida la copia, redistribución o uso comercial del código fuente sin autorización.
+            </p>
+        </div>
+    </footer>
+
+    <a href="index.html" class="fixed bottom-8 right-8 w-14 h-14 bg-slate-900 dark:bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all z-50">🏠</a>
+
+    <script>
+        let fillType = 'solid';
+
+        function toggleTheme() {
+            const html = document.getElementById('htmlTag');
+            const isDark = html.classList.toggle('dark');
+            document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
+            document.getElementById('themeText').textContent = isDark ? 'Modo Claro' : 'Modo Oscuro';
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        if (localStorage.getItem('theme') === 'dark') {
+            document.getElementById('htmlTag').classList.add('dark');
+            document.getElementById('themeIcon').textContent = '☀️';
+            document.getElementById('themeText').textContent = 'Modo Claro';
+        }
+
+        function setFillType(type) {
+            fillType = type;
+            const btnSolid = document.getElementById('btnSolid');
+            const btnGrad = document.getElementById('btnGrad');
+            const solidCtrls = document.getElementById('solidControls');
+            const gradCtrls = document.getElementById('gradientControls');
+
+            if(type === 'solid') {
+                btnSolid.className = "flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-indigo-500 bg-indigo-500 text-white transition-all";
+                btnGrad.className = "flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-slate-200 dark:border-slate-700 text-slate-400 transition-all";
+                solidCtrls.classList.remove('hidden');
+                gradCtrls.classList.add('hidden');
+            } else {
+                btnGrad.className = "flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-indigo-500 bg-indigo-500 text-white transition-all";
+                btnSolid.className = "flex-1 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest border-2 border-slate-200 dark:border-slate-700 text-slate-400 transition-all";
+                gradCtrls.classList.remove('hidden');
+                solidCtrls.classList.add('hidden');
+            }
+            updateBlob();
+        }
+
+        function createBlobPath(edges, growth) {
+            const size = 500;
+            const center = size / 2;
+            const points = [];
+            const angleStep = (Math.PI * 2) / edges;
+
+            for (let i = 0; i < edges; i++) {
+                const angle = i * angleStep;
+                const r = 150 + (Math.random() * growth);
+                points.push({
+                    x: center + r * Math.cos(angle),
+                    y: center + r * Math.sin(angle)
+                });
+            }
+
+            let path = `M ${(points[0].x + points[edges-1].x)/2} ${(points[0].y + points[edges-1].y)/2}`;
+            for (let i = 0; i < edges; i++) {
+                const p = points[i];
+                const nextP = points[(i + 1) % edges];
+                const midX = (p.x + nextP.x) / 2;
+                const midY = (p.y + nextP.y) / 2;
+                path += ` Q ${p.x} ${p.y}, ${midX} ${midY}`;
+            }
+            return path + " Z";
+        }
+
+        function updateBlob() {
+            const edges = parseInt(document.getElementById('edges').value);
+            const growth = parseInt(document.getElementById('growth').value);
+            document.getElementById('val-edges').textContent = edges;
+            document.getElementById('val-growth').textContent = growth;
+
+            const path = createBlobPath(edges, growth);
+            let fillAttr, defs = "";
+
+            if(fillType === 'solid') {
+                fillAttr = document.getElementById('color1').value;
+            } else {
+                const s = document.getElementById('gradStart').value;
+                const e = document.getElementById('gradEnd').value;
+                fillAttr = "url(#blobGrad)";
+                defs = `<defs>\n    <linearGradient id="blobGrad" x1="0%" y1="0%" x2="100%" y2="100%">\n      <stop offset="0%" style="stop-color:${s};stop-opacity:1" />\n      <stop offset="100%" style="stop-color:${e};stop-opacity:1" />\n    </linearGradient>\n  </defs>\n  `;
+            }
+
+            const svg = `<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" width="100%">\n  ${defs}<path fill="${fillAttr}" d="${path}" />\n</svg>`;
+            document.getElementById('canvas').innerHTML = svg;
+            document.getElementById('svgOutput').textContent = svg;
+        }
+
+        function randomize() {
+            document.getElementById('edges').value = Math.floor(Math.random() * 5) + 4;
+            document.getElementById('growth').value = Math.floor(Math.random() * 80) + 30;
+            const rc = () => '#' + Math.floor(Math.random()*16777215).toString(16).padStart(6, '0');
+            document.getElementById('color1').value = rc();
+            document.getElementById('gradStart').value = rc();
+            document.getElementById('gradEnd').value = rc();
+            updateBlob();
+        }
+
+        function copySVG() {
+            navigator.clipboard.writeText(document.getElementById('svgOutput').textContent);
+            const b = document.getElementById('copyBtn');
+            const originalText = b.textContent;
+            b.textContent = "¡COPIADO!";
+            b.classList.remove('bg-indigo-600');
+            b.classList.add('bg-emerald-500');
+            
+            setTimeout(() => {
+                b.textContent = originalText;
+                b.classList.remove('bg-emerald-500');
+                b.classList.add('bg-indigo-600');
+            }, 2000);
+        }
+
+        function downloadSVG() {
+            const blob = new Blob([document.getElementById('svgOutput').textContent], {type: "image/svg+xml"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `blob-juanfrank-${Date.now()}.svg`;
+            a.click();
+        }
+
+        updateBlob();
+    </script>
+</body>
+</html>

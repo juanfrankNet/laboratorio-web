@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlTag" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Laboratorio Web | Herramientas Técnicas para Devs & Designers</title>
+    <meta name="description" content="Suite gratuita de herramientas profesionales: SEO técnico, generadores CSS, optimización de tipografía, utilidades SVG y analizadores de texto. Potencia tu flujo de trabajo.">
+    <meta name="keywords" content="herramientas web, laboratorio web, SEO técnico, generador robots.txt, metatags, sombras CSS, gradientes, sitemaps, tipografía web, utilidades dev">
+    <meta name="author" content="juanfrank.net">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://juanfrank.net/index.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://juanfrank.net/index.html">
+    <meta property="og:title" content="🚀 Laboratorio Web | Herramientas Técnicas Gratuitas">
+    <meta property="og:description" content="Potencia tu diseño y desarrollo con utilidades profesionales: SEO, CSS, SVG y más. Sin registro, rápido y gratuito.">
+    <meta property="og:image" content="https://juanfrank.net/assets/og-image-lab-web.jpg">
+    <meta property="og:site_name" content="juanfrank.net">
+    <meta property="og:locale" content="es_ES">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://juanfrank.net/index.html">
+    <meta name="twitter:title" content="Laboratorio de Herramientas Web para Profesionales">
+    <meta name="twitter:description" content="De generadores de Robots.txt a herramientas de tipografía maestra. Todo lo que un dev necesita en un solo lugar.">
+    <meta name="twitter:image" content="https://juanfrank.net/assets/og-image-lab-web.jpg">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
+    <meta name="theme-color" content="#6366f1">
+        
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+        function toggleTheme() {
+            const html = document.getElementById('htmlTag');
+            const isDark = html.classList.toggle('dark');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            document.getElementById('themeIcon').textContent = isDark ? '☀️' : '🌙';
+            document.getElementById('themeText').textContent = isDark ? 'Modo Claro' : 'Modo Oscuro';
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .tool-card { transition: all 0.2s ease; display: flex; flex-direction: column; height: 100%; }
+        .tool-card:hover { transform: translateY(-3px); border-color: #6366f1; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1); }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <nav class="max-w-7xl mx-auto w-full flex justify-end p-6">
+        <button onclick="toggleTheme()" class="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 flex items-center gap-2 hover:scale-105 transition-transform active:scale-95">
+            <span id="themeIcon">🌙</span>
+            <span class="text-xs font-bold uppercase tracking-widest hidden sm:inline" id="themeText">Modo Oscuro</span>
+        </button>
+    </nav>
+
+    <header class="max-w-4xl mx-auto w-full px-8 pt-4 pb-12 text-center">
+        <h1 class="text-4xl sm:text-5xl font-black tracking-tighter uppercase italic mb-4">
+            Laboratorio <span class="text-indigo-500">Web</span>
+        </h1>
+        <p class="text-sm sm:text-base font-medium text-slate-500 dark:text-slate-400 max-w-2xl mx-auto leading-relaxed">
+            Herramientas técnicas para optimizar tu flujo de diseño y desarrollo web.
+        </p>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 pb-24 w-full">
+        
+        <section class="mb-12">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-6 border-b border-indigo-100 dark:border-indigo-900/30 pb-2">SEO & Visibilidad Técnica</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="generador-de-metatags.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2">🏷️</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Meta Tags</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">SEO profesional y etiquetas hreflang internacionales.</p>
+                </a>
+                <a href="generador-robots-txt.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2">🤖</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Robots.txt</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Control de rastreadores y protección anti-IA avanzada.</p>
+                </a>
+                <a href="generador-sitemapsXML.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2">🗺️</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Sitemaps XML</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Mapas del sitio validados para indexación rápida.</p>
+                </a>
+                <a href="generador-webfont.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2">⚡</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Webfonts</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Código @font-face optimizado y formatos WOFF2.</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-6 border-b border-indigo-100 dark:border-indigo-900/30 pb-2">Diseño Visual & CSS</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="gradientes-pro-css.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">🎨</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Gradientes Pro</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Fondos Aurora, Mesh y capas modernas multizona.</p>
+                </a>
+                <a href="generador-sombras-css.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">🌑</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Sombras CSS</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Box-shadow avanzado con previsualización real.</p>
+                </a>
+                <a href="filtros-imagen-css.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">📸</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Filtros CSS</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Efectos de brillo, contraste y desenfoque listos.</p>
+                </a>
+                <a href="generador-de-formas-svg.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">🫧</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Blobs SVG</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Generador aleatorio de formas orgánicas vectoriales.</p>
+                </a>
+                <a href="selector-de-color-visual.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">🌈</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Color & WCAG</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Selector HSV/HSL con análisis de accesibilidad.</p>
+                </a>
+                <a href="calculadora-dimensiones.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">📐</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Aspect Ratio</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Calculadora de proporciones para media y diseño.</p>
+                </a>
+                <a href="conversor-unidades.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">📏</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Unidades CSS</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Conversor técnico de PX a REM, Clamp y VW/VH.</p>
+                </a>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-[10px] font-black uppercase tracking-[0.3em] text-indigo-500 mb-6 border-b border-indigo-100 dark:border-indigo-900/30 pb-2">Contenido & Tipografía</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <a href="tipografias-maestras.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">🔤</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Tipografías</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Guía maestra de Google Fonts y optimización tipográfica.</p>
+                </a>
+                <a href="analizador-de-texto.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">✍️</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Analizador</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Contador de palabras, densidad SEO y tiempo de lectura.</p>
+                </a>
+                <a href="email-encoder.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">📧</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Email Encoder</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Protección de correos contra scrapers y spam bots.</p>
+                </a>
+                <a href="universo-visual.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">✨</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Recursos Visuales</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Catálogo de iconos SVG, emojis y librerías UI.</p>
+                </a>
+                <a href="tabla-codigos.html" class="tool-card p-5 bg-white dark:bg-slate-800 rounded-3xl border border-slate-200 dark:border-slate-700 shadow-sm">
+                    <span class="text-2xl mb-2 block">⌨️</span>
+                    <h3 class="font-bold text-sm mb-1 uppercase tracking-tight">Códigos HTML</h3>
+                    <p class="text-[11px] text-slate-500 dark:text-slate-400 leading-snug">Entidades HTML, códigos Alt y símbolos Unicode.</p>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="max-w-7xl mx-auto w-full pb-12 px-8 text-center border-t border-slate-200 dark:border-slate-800 pt-8 mt-auto">
+        <div class="mb-8">
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+            <script type='text/javascript'>kofiwidget2.init('¿Me invitas a un café?', '#6366f1', 'H2H71TNB5K');kofiwidget2.draw();</script>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+            <p class="text-slate-500 text-sm font-medium tracking-widest">
+                © 2025 juanfrank.net • <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#117;&#97;&#110;&#102;&#114;&#97;&#110;&#107;&#46;&#110;&#101;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="text-indigo-600 dark:text-indigo-400 hover:underline transition-colors">Contacto</a>
+            </p>
+            <div class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" class="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium no-underline">
+                    <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" class="filter grayscale dark:invert" />
+                    <span>Esta obra está bajo una Licencia CC BY-NC-ND 4.0</span>
+                </a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 max-w-xs leading-tight">
+                Uso gratuito permitido. Prohibida la copia, redistribución o uso comercial del código fuente sin autorización.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        window.onload = () => {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.getElementById('htmlTag');
+            if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                html.classList.add('dark');
+                document.getElementById('themeIcon').textContent = '☀️';
+                document.getElementById('themeText').textContent = 'Modo Claro';
+            }
+        };
+    </script>
+</body>
+</html>

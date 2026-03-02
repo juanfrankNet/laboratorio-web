@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es" id="htmlTag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📐 Calculadora de Dimensiones y Aspect Ratio | juanfrank.net</title>
+    <meta name="description" content="Calculadora profesional para redimensionar imágenes y videos. Calcula proporciones (Aspect Ratio), dimensiones para impresión y diseño digital con precisión.">
+    <meta name="keywords" content="calculadora de dimensiones, aspect ratio, redimensionar imagenes, calcular proporciones, diseño digital, medidas impresion, pixeles a cm">
+    <meta name="author" content="juanfrank.net">
+    <meta name="robots" content="index, follow">
+
+    <meta name="theme-color" content="#6366f1">
+    <link rel="canonical" href="https://juanfrank.net/calculadora-dimensiones.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://juanfrank.net/calculadora-dimensiones.html">
+    <meta property="og:title" content="📐 Calculadora de Dimensiones y Aspect Ratio | juanfrank.net">
+    <meta property="og:description" content="Optimiza tus proyectos visuales calculando dimensiones y proporciones exactas de forma instantánea.">
+    <meta property="og:image" content="https://juanfrank.net/og-image-lab-web.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://juanfrank.net/calculadora-dimensiones.html">
+    <meta property="twitter:title" content="📐 Calculadora de Dimensiones y Aspect Ratio | juanfrank.net">
+    <meta property="twitter:description" content="Calcula proporciones y dimensiones para tus diseños. Herramienta gratuita y profesional.">
+    <meta property="twitter:image" content="https://juanfrank.net/og-image-lab-web.jpg">
+
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="msapplication-TileImage" content="/mstile-150x150.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    
+    <style>
+        body { transition: background-color 0.3s ease, color 0.3s ease; }
+        .preview-box { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .animate-slide { animation: slideIn 0.3s ease-out forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(-10px); } to { opacity: 1; transform: translateX(0); } }
+        
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        .dark ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
+
+        /* --- SOLUCIÓN PARA SELECTS --- */
+        select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2364748b'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1.2em;
+            padding-right: 2.5rem !important;
+        }
+
+        .dark select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394a3b8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+        }
+
+        select:hover {
+            border-color: #6366f1;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 dark:bg-[#0f172a] text-slate-900 dark:text-slate-100 min-h-screen p-4 md:p-8">
+
+    <div class="max-w-5xl mx-auto flex justify-end mb-4">
+        <button onclick="toggleTheme()" class="p-3 bg-white dark:bg-slate-800 rounded-2xl shadow-lg border border-slate-200 dark:border-slate-700 flex items-center gap-2 hover:scale-105 transition-transform active:scale-95">
+            <span id="themeIcon">🌙</span>
+            <span class="text-xs font-bold uppercase tracking-widest hidden sm:inline" id="themeText">Modo Oscuro</span>
+        </button>
+    </div>
+
+    <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <main class="lg:col-span-2 bg-white dark:bg-[#1e293b] rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800 overflow-hidden">
+            <div class="p-8 border-b border-slate-50 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/50">
+                <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400">CALCULADORA DE ASPECTO</h1>
+                <p class="text-slate-500 dark:text-slate-400 text-sm">Define dimensiones precisas para tus proyectos.</p>
+            </div>
+
+            <div class="p-8 space-y-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-3 uppercase tracking-wider">Conozco el:</label>
+                        <div class="flex p-1 bg-slate-100 dark:bg-[#0f172a] rounded-xl border border-slate-200 dark:border-slate-800">
+                            <button onclick="setType('width')" id="btnWidth" class="flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all bg-white dark:bg-indigo-600 shadow-sm text-indigo-600 dark:text-white">Ancho</button>
+                            <button onclick="setType('height')" id="btnHeight" class="flex-1 py-2 px-4 rounded-lg text-sm font-bold transition-all text-slate-500 dark:text-slate-400">Alto</button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-3 uppercase tracking-wider">Unidad:</label>
+                        <select id="unit" class="w-full p-3 bg-slate-50 dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-xl outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <option value="px">Píxeles (px)</option>
+                            <option value="cm">Centímetros (cm)</option>
+                            <option value="in">Pulgadas (in)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label id="labelKnown" class="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-2 uppercase tracking-wider font-mono">Input Value:</label>
+                        <input type="number" id="inputValue" placeholder="Ej: 1920" class="w-full p-4 bg-white dark:bg-[#0f172a] border-2 border-slate-100 dark:border-slate-800 rounded-2xl text-lg font-medium outline-none focus:border-indigo-500 transition-all dark:placeholder:text-slate-700">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-slate-700 dark:text-slate-400 mb-2 uppercase tracking-wider font-mono">Ratio:</label>
+                        <select id="aspectRatio" onchange="toggleCustom()" class="w-full p-4 bg-slate-50 dark:bg-[#0f172a] border border-slate-200 dark:border-slate-800 rounded-2xl outline-none focus:border-indigo-500 transition-all hover:bg-slate-100 dark:hover:bg-slate-800">
+                            <optgroup label="Video & Web">
+                                <option value="16:9">16:9 - YouTube / HD TV</option>
+                                <option value="21:9">21:9 - Cine / Ultra-Wide</option>
+                                <option value="4:3">4:3 - TV Clásica / iPad</option>
+                            </optgroup>
+                            <optgroup label="Redes Sociales">
+                                <option value="9:16">9:16 - Stories / Reels / TikTok</option>
+                                <option value="4:5">4:5 - Retrato Instagram</option>
+                                <option value="1.91:1">1.91:1 - Horizontal (FB/LinkedIn)</option>
+                            </optgroup>
+                            <optgroup label="Fotografía & Papel">
+                                <option value="3:2">3:2 - DSLR / Sensor 35mm</option>
+                                <option value="1.414:1">1.41:1 - Estándar ISO A4/A3</option>
+                            </optgroup>
+                            <option value="custom">Manual / Personalizado...</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="customArea" class="hidden animate-slide p-6 bg-indigo-50 dark:bg-[#0f172a] rounded-2xl border border-indigo-100 dark:border-indigo-900/30">
+                    <div class="flex items-center gap-4">
+                        <input type="number" id="customW" placeholder="W" class="w-full p-3 rounded-xl dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 outline-none focus:border-indigo-500">
+                        <span class="font-bold text-indigo-500">:</span>
+                        <input type="number" id="customH" placeholder="H" class="w-full p-3 rounded-xl dark:bg-[#1e293b] border border-slate-200 dark:border-slate-700 outline-none focus:border-indigo-500">
+                    </div>
+                </div>
+
+                <div class="flex gap-4">
+                    <button onclick="calculate()" class="flex-[2] py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-2xl shadow-lg shadow-indigo-200 dark:shadow-none transition-all hover:scale-[1.01] active:scale-[0.98]">
+                        Calcular
+                    </button>
+                    <button onclick="clearAll()" class="flex-1 py-4 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold rounded-2xl transition-all hover:bg-slate-200 dark:hover:bg-slate-700">
+                        Reset
+                    </button>
+                </div>
+
+                <div id="resultBox" class="hidden p-8 bg-gradient-to-br from-indigo-600 to-purple-700 dark:from-indigo-900 dark:to-slate-900 rounded-3xl text-white relative overflow-hidden shadow-xl border border-white/10">
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="text-center md:text-left">
+                            <p id="resLabel" class="text-indigo-200 dark:text-indigo-400 text-xs font-bold uppercase tracking-widest mb-1">Resultado</p>
+                            <div class="flex items-baseline gap-2">
+                                <span id="resVal" class="text-6xl font-black tracking-tighter">0</span>
+                                <span id="resUnit" class="text-xl text-indigo-300">px</span>
+                            </div>
+                        </div>
+                        <button onclick="copyResult()" id="copyBtn" class="px-6 py-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-xl font-bold text-sm transition-all flex items-center gap-2 border border-white/20">
+                            <span id="copyIcon">📋</span> <span id="copyTxt">Copiar</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <aside class="space-y-8">
+            <section class="bg-white dark:bg-[#1e293b] p-6 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800">
+                <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-6 text-center">Visual Preview</h2>
+                <div class="aspect-square flex items-center justify-center bg-slate-50 dark:bg-[#0f172a] rounded-2xl border-2 border-dashed border-slate-200 dark:border-slate-800 p-4">
+                    <div id="visualPreview" class="preview-box bg-indigo-500 shadow-2xl rounded-lg flex items-center justify-center text-white font-bold text-[10px] border border-white/20" style="width: 80%; height: 45%;">
+                        <span id="previewLabel" class="bg-black/20 px-2 py-1 rounded">16:9</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="bg-white dark:bg-[#1e293b] p-6 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest">Historial</h2>
+                    <button onclick="clearHistory()" class="text-[10px] text-red-500 font-bold hover:text-red-400 uppercase">Borrar</button>
+                </div>
+                <div id="historyList" class="space-y-3 max-h-[250px] overflow-y-auto"></div>
+            </section>
+
+            <section class="bg-white dark:bg-[#1e293b] p-6 rounded-3xl shadow-xl border border-slate-100 dark:border-slate-800">
+            <h2 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Referencias SEO & Social</h2>
+            <div class="space-y-4">
+                <div class="group cursor-pointer" onclick="setInput(1200, '1.91:1')">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">OG / Twitter Card</span>
+                        <span class="text-[10px] text-slate-400 font-mono">1200 × 630</span>
+                    </div>
+                    <p class="text-[9px] text-slate-500 leading-tight">Ideal para previews de enlaces web (Metatag og:image).</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="setInput(820, 'custom', 820, 312)">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">Portada Facebook</span>
+                        <span class="text-[10px] text-slate-400 font-mono">820 × 312</span>
+                    </div>
+                    <p class="text-[9px] text-slate-500 leading-tight">Optimizado para visualización en escritorio.</p>
+                </div>
+
+                <div class="group cursor-pointer" onclick="setInput(1280, '16:9')">
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-[10px] font-bold text-indigo-500 uppercase">YouTube Thumb</span>
+                        <span class="text-[10px] text-slate-400 font-mono">1280 × 720</span>
+                    </div>
+                    <p class="text-[9px] text-slate-500 leading-tight">Miniatura estándar HD para vídeos.</p>
+                </div>
+            </div>
+</section>
+        </aside>
+    </div>
+
+    <footer class="max-w-6xl mx-auto mt-16 pb-24 text-center border-t border-slate-200 dark:border-slate-800 pt-8">
+        <div class="mb-8">
+            <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script>
+            <script type='text/javascript'>kofiwidget2.init('¿Me invitas a un café?', '#6366f1', 'H2H71TNB5K');kofiwidget2.draw();</script>
+        </div>
+        <div class="flex flex-col items-center gap-4">
+            <p class="text-slate-500 text-sm font-medium tracking-widest">
+                © 2025 juanfrank.net • <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#117;&#97;&#110;&#102;&#114;&#97;&#110;&#107;&#46;&#110;&#101;&#116;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;" class="text-indigo-600 dark:text-indigo-400 hover:underline transition-colors">Contacto</a>
+            </p>
+            <div class="flex items-center gap-2 opacity-60 hover:opacity-100 transition-opacity">
+                <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" class="flex items-center gap-2 text-[10px] text-slate-500 dark:text-slate-400 font-medium no-underline">
+                    <img alt="Licencia Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" class="filter grayscale dark:invert" />
+                    <span>Esta obra está bajo una Licencia CC BY-NC-ND 4.0</span>
+                </a>
+            </div>
+            <p class="text-[10px] text-slate-400 dark:text-slate-500 max-w-xs leading-tight">
+                Uso gratuito permitido. Prohibida la copia, redistribución o uso comercial del código fuente sin autorización.
+            </p>
+        </div>
+    </footer>
+
+    <a href="index.html" class="fixed bottom-8 right-8 w-14 h-14 bg-slate-900 dark:bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center text-2xl hover:scale-110 transition-all z-50 group">
+        🏠 
+        <span class="absolute right-full mr-4 px-3 py-1 bg-slate-800 text-white text-[10px] font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">VOLVER AL INICIO</span>
+    </a>
+
+    <script>
+        function toggleTheme() {
+            const html = document.getElementById('htmlTag');
+            const icon = document.getElementById('themeIcon');
+            const text = document.getElementById('themeText');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                icon.textContent = '🌙';
+                text.textContent = 'Modo Oscuro';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                icon.textContent = '☀️';
+                text.textContent = 'Modo Claro';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.getElementById('htmlTag').classList.add('dark');
+            document.getElementById('themeIcon').textContent = '☀️';
+            document.getElementById('themeText').textContent = 'Modo Claro';
+        }
+
+        let currentType = 'width';
+        let history = JSON.parse(localStorage.getItem('dim_history')) || [];
+
+        function setType(type) {
+            currentType = type;
+            const isWidth = type === 'width';
+            document.getElementById('labelKnown').textContent = isWidth ? 'Ancho Actual:' : 'Alto Actual:';
+            
+            const btnW = document.getElementById('btnWidth');
+            const btnH = document.getElementById('btnHeight');
+            
+            if(isWidth) {
+                btnW.className = "flex-1 py-2 px-4 rounded-lg text-sm font-bold bg-white dark:bg-indigo-600 shadow-sm text-indigo-600 dark:text-white";
+                btnH.className = "flex-1 py-2 px-4 rounded-lg text-sm font-bold text-slate-500 dark:text-slate-400";
+            } else {
+                btnH.className = "flex-1 py-2 px-4 rounded-lg text-sm font-bold bg-white dark:bg-indigo-600 shadow-sm text-indigo-600 dark:text-white";
+                btnW.className = "flex-1 py-2 px-4 rounded-lg text-sm font-bold text-slate-500 dark:text-slate-400";
+            }
+        }
+
+        function toggleCustom() {
+            const isCustom = document.getElementById('aspectRatio').value === 'custom';
+            document.getElementById('customArea').classList.toggle('hidden', !isCustom);
+            updateVisual();
+        }
+
+        function updateVisual() {
+            const ratio = document.getElementById('aspectRatio').value;
+            let rw, rh;
+            if(ratio === 'custom') {
+                rw = parseFloat(document.getElementById('customW').value) || 1;
+                rh = parseFloat(document.getElementById('customH').value) || 1;
+            } else {
+                [rw, rh] = ratio.split(':').map(Number);
+            }
+            const preview = document.getElementById('visualPreview');
+            if (rw >= rh) {
+                preview.style.width = '100%';
+                preview.style.height = (rh / rw * 100) + '%';
+            } else {
+                preview.style.height = '100%';
+                preview.style.width = (rw / rh * 100) + '%';
+            }
+            document.getElementById('previewLabel').textContent = `${rw}:${rh}`;
+        }
+
+        function calculate() {
+            const val = parseFloat(document.getElementById('inputValue').value);
+            const ratioSelect = document.getElementById('aspectRatio').value;
+            const unit = document.getElementById('unit').value;
+            if(!val || val <= 0) return;
+            
+            let rw, rh;
+            if(ratioSelect === 'custom') {
+                rw = parseFloat(document.getElementById('customW').value);
+                rh = parseFloat(document.getElementById('customH').value);
+            } else {
+                [rw, rh] = ratioSelect.split(':').map(Number);
+            }
+            if(!rw || !rh) return;
+
+            let result = (currentType === 'width') ? (val * rh) / rw : (val * rw) / rh;
+            result = Number(result.toFixed(2));
+
+            document.getElementById('resVal').textContent = result;
+            document.getElementById('resUnit').textContent = unit;
+            document.getElementById('resLabel').textContent = currentType === 'width' ? 'Alto Calculado' : 'Ancho Calculado';
+            document.getElementById('resultBox').classList.remove('hidden');
+            
+            updateVisual();
+            addToHistory(val, result, rw, rh, unit);
+        }
+
+        function addToHistory(input, output, rw, rh, unit) {
+            const item = {
+                desc: `${input}${unit} (${rw}:${rh}) ➔ ${output}${unit}`,
+                time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
+            };
+            history.unshift(item);
+            if(history.length > 5) history.pop();
+            localStorage.setItem('dim_history', JSON.stringify(history));
+            renderHistory();
+        }
+
+        function renderHistory() {
+            const list = document.getElementById('historyList');
+            list.innerHTML = history.map(h => `
+                <div class="p-3 bg-slate-50 dark:bg-[#0f172a] rounded-xl border border-slate-100 dark:border-slate-800 animate-slide mb-2">
+                    <p class="text-xs font-bold text-indigo-600 dark:text-indigo-400">${h.desc}</p>
+                    <span class="text-[9px] text-slate-400 uppercase font-mono">${h.time}</span>
+                </div>
+            `).join('');
+        }
+       
+        function setInput(val, ratio, cw = null, ch = null) {
+            document.getElementById('inputValue').value = val;
+            document.getElementById('aspectRatio').value = ratio;
+            
+            if(ratio === 'custom' && cw && ch) {
+                document.getElementById('customW').value = cw;
+                document.getElementById('customH').value = ch;
+            }
+            
+            toggleCustom(); // Actualiza la visibilidad de los campos manuales
+            calculate();    // Realiza el cálculo automáticamente
+        }
+        
+        function copyResult() {
+            const val = document.getElementById('resVal').textContent;
+            navigator.clipboard.writeText(val);
+            const btnTxt = document.getElementById('copyTxt');
+            btnTxt.textContent = 'Copiado';
+            setTimeout(() => btnTxt.textContent = 'Copiar', 2000);
+        }
+
+        function clearAll() {
+            document.getElementById('inputValue').value = '';
+            document.getElementById('customW').value = '';
+            document.getElementById('customH').value = '';
+            document.getElementById('resultBox').classList.add('hidden');
+        }
+
+        function clearHistory() {
+            history = [];
+            localStorage.removeItem('dim_history');
+            renderHistory();
+        }
+
+        renderHistory();
+        updateVisual();
+    </script>
+</body>
+</html>

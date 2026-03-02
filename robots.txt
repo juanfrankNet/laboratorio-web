@@ -1,0 +1,46 @@
+#---------------------------------------------------------
+# ROBOTS.TXT PARA JUANFRANK.NET
+# Optimizado para SEO y Protección de Datos IA (2026)
+#---------------------------------------------------------
+
+# 1. BLOQUEO ESPECÍFICO PARA ENTRENAMIENTO DE IA
+# Evita que usen tu contenido para alimentar modelos de lenguaje 
+# sin bloquear la aparición en buscadores.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+# 2. REGLAS PARA BUSCADORES GENERALES (Google, Bing, etc.)
+User-agent: *
+Allow: /
+
+# Bloqueo de carpetas sensibles o temporales
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+Disallow: /config/
+Disallow: /scripts/
+
+# 3. RUTA DEL MAPA DEL SITIO
+Sitemap: https://juanfrank.net/sitemap.xml
+
+#---------------------------------------------------------
+# Notas técnicas: 
+# Google-Extended permite aparecer en Google Search 
+# pero prohíbe el uso de datos en Gemini/AI Overviews.
+#---------------------------------------------------------

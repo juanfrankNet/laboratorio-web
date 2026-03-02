@@ -1,0 +1,39 @@
+# Robots.txt para juanfrank.net
+User-agent: *
+Allow: /
+Disallow: /private/
+Disallow: /admin/
+Disallow: /temp/
+
+# Bloquear rastreo de bots de IA agresivos si se desea (opcional)
+# 🤖 BLOQUEO DE IA Y DATA SCRAPING
+# --------------------------------------------
+
+# Bloquea el rastreador principal de ChatGPT
+User-agent: GPTBot
+Disallow: /
+
+# Bloquea la navegación en tiempo real de ChatGPT
+User-agent: ChatGPT-User
+Disallow: /
+
+# Bloquea a Google Gemini (Bard) y sus entrenamientos futuros
+User-agent: Google-Extended
+Disallow: /
+
+# Bloquea Common Crawl (usado para entrenar casi todas las IAs abiertas)
+User-agent: CCBot
+Disallow: /
+
+# Bloquea el rastreador de Anthropic (Claude)
+User-agent: anthropic-ai
+Disallow: /
+
+# Bloquea el rastreador de Perplexity AI
+User-agent: PerplexityBot
+Disallow: /
+
+# --------------------------------------------
+
+Sitemap: https://juanfrank.net/sitemap.xml
+
